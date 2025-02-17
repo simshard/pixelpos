@@ -4,7 +4,7 @@
         <h3 class="group-hover:text-violet-800 text-xl font-bold transition-colors duration-300">
             job title
         </h3>
-        <p>salary</p>
+        <p class="text-sm text-gray-400 mt-4">salary</p>
     </div>
     <div class="flex justify-between items-center mt-auto ">
         <div class="flex gap-x-2">
