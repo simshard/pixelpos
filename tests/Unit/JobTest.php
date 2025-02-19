@@ -1,18 +1,24 @@
 <?php
 
-namespace Tests\Unit;
-
-use PHPUnit\Framework\TestCase;
-use App\Models\Employer;
 use App\Models\Job;
+use App\Models\Employer;
 
-class JobTest extends TestCase
-{
-    /**
-     * A basic unit test example.
-     */
-    public function test_example(): void
-    {
-        $this->assertTrue(true);
-    }
-}
+test('it belongs to an employer', function () {
+    //arrange
+     $employer = Employer::factory()->create();
+     $job = Job::factory()->create(['employer_id' => $employer->id]);
+
+    //act & assert
+    expect($job->employer->is($employer))->toBeTrue();
+
+    
+});
+
+test('it has tags', function () {
+    $job = Job::factory()->create();
+
+    $job->tag('weird');
+
+    expect($job->tags)->toHaveCount(1);
+    
+});

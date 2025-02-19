@@ -24,4 +24,4 @@ class JobSeeder extends Seeder
             'schedule' => 'Part Time',
         ]));
     }
-    }
+}

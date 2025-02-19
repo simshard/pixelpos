@@ -1,27 +1,26 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JobController;
+use App\Http\Controllers\SessionController;
+use App\Http\Controllers\RegisteredUserController;
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [JobController::class, 'index']);
 
-Route::get('/jobs', function () {
-    return view('jobs');
-});
 
-Route::get('/careers', function () {
-    return view('careers');
-});
+// Route::get('/jobs/create', [JobController::class, 'create'])->middleware('auth');
+// Route::post('/jobs', [JobController::class, 'store'])->middleware('auth');
 
-Route::get('/salaries', function () {
-    return view('salaries');
-});
+// Route::get('/search', SearchController::class);
+// Route::get('/tags/{tag:name}', TagController::class);
+ 
 
-Route::get('/companies', function () {
-    return view('companies');
-});
+ Route::middleware('guest')->group(function () {
+    Route::get('/register', [RegisteredUserController::class, 'create']);
+    Route::post('/register', [RegisteredUserController::class, 'store']);
 
-Route::get('/postjob', function () {
-    return view('postjob');
-});
+    Route::get('/login', [SessionController::class, 'create']);
+    Route::post('/login', [SessionController::class, 'store']);
+ }); 
+
+Route::delete('/logout', [SessionController::class, 'destroy'])->middleware('auth');
