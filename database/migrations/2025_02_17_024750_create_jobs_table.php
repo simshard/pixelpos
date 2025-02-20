@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->foreignIdFor(Employer::class)->constrained()->cascadeOnDelete();
             $table->string('title');
             $table->string('salary');
-            $table->string('location');
+            $table->string('location')->nullable()->default('remote');
             $table->string('schedule')->default('Full Time');
             $table->string('url');
             $table->boolean('featured')->default(false);
